@@ -1,11 +1,16 @@
 import React from 'react';
 import Login from './Login.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Secret from './Secret.jsx';
 
 function App() {
   return (
-    <div>
-      <Login/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/secret" element={<Secret />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

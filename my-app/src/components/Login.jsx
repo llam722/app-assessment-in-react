@@ -4,13 +4,17 @@ function Login() {
   return (
     <div>
       <form id="login">
-        <label for="username">Username:</label>
+        <label>Username:</label>
         <br></br>
         <input id="username" type="text"></input>
         <br></br>
-        <label for="password">Password:</label>
+        <br></br>
+        <label>Password:</label>
         <br></br>
         <input id="password" type="text"></input>
+        <br></br>
+        <br></br>
+        <input type="submit"></input>
       </form>
     </div>
   );
