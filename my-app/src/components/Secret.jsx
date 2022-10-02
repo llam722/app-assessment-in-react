@@ -25,7 +25,9 @@ const Secret = () => {
         <button> Get Tasks </button>
       </form>
       {task.map((item, i) => {
-        return <Tasks item={item} key={i} handleDelete={handleDelete} />;
+        return (
+          <Tasks item={item} key={i} id={id} handleDelete={handleDelete} />
+        );
       })}
     </div>
   );
