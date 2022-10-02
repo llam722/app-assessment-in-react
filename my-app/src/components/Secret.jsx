@@ -4,11 +4,23 @@ import Tasks from './Tasks.jsx';
 const Secret = () => {
   const [task, setTask] = useState([]);
 
-  console.log(task);
+  // console.log(task);
 
-  const handleDelete = (e) => {
-    e.preventDefault;
-    console.log(e);
+  const handleDelete = (_id) => {
+    // e.preventDefault();
+    // console.log(e);
+    fetch('http://localhost:3000/tasks', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ _id: _id }),
+    })
+      .then((data) => data.json())
+      .then((data) => console.log('Deleted', data))
+      .catch((err) => {
+        console.log('handleDelete error', err);
+      });
   };
 
   const handleClick = (e) => {
@@ -17,7 +29,7 @@ const Secret = () => {
     fetch('http://localhost:3000/tasks')
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTask(data);
       })
       .catch((err) => console.log('handleClick error', err));
@@ -43,10 +55,15 @@ const Secret = () => {
   const tasks = [];
   for (let i = 0; i < task.length; i++) {
     tasks.push(
-      <Tasks item={task[i].item} key={i} handleDelete={handleDelete} />
+      <Tasks
+        item={task[i].item}
+        key={i}
+        _id={task[i]._id}
+        handleDelete={handleDelete}
+      />
     );
   }
-  console.log(task);
+  console.log(task[0]);
   return (
     <div>
       <form onSubmit={handleEvent}>

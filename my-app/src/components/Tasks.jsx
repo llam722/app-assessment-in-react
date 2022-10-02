@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Tasks = ({ item, handleDelete }) => {
+const Tasks = ({ item, handleDelete, _id }) => {
   return (
-    <div>
+    <>
       <li>{item}</li>
       <button onClick={handleDelete}>X</button>
-    </div>
+    </>
   );
 };
 
