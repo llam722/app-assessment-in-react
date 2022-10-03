@@ -4,12 +4,15 @@ const app = express();
 const path = require('path');
 const taskController = require('./controllers/taskController');
 const cors = require('cors');
+const authController = require('./controllers/authController');
+const cookieParser = require('cookie-parser');
 
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(cookieParser());
 
 app.use(express.static(path.resolve(__dirname, '../src')));
 
@@ -23,6 +26,15 @@ app.post('/tasks', taskController.postTask, (req, res) => {
 
 app.delete('/tasks', taskController.deleteTask, (req, res) => {
   res.status(200).json(res.locals.deletedTask);
+});
+
+app.get('/secret', authController.verifyUser, (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, './server/server.js'));
+});
+
+app.post('/signin', authController.createUser, (req, res) => {
+  res.status(200).redirect(path.resolve(__dirname, '/secret'));
+  ß;
 });
 
 app.get('/', (req, res) => {
