@@ -4,7 +4,7 @@ const Tasks = ({ item, handleDelete, _id }) => {
   return (
     <>
       <li>{item}</li>
-      <button onClick={handleDelete}>X</button>
+      <button onClick={() => handleDelete(_id)}>X</button>
     </>
   );
 };
